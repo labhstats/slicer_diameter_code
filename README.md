@@ -1,6 +1,11 @@
 # Slicer Diameter overhead code:
 
-Code used to simplify manual Slicer estimation of artery diameters.
+Code used to simplify (initialization and end collection into a single table) manual Slicer estimation of artery diameters.
+
+## Intended included files:
+- Slicer start and load code of volumes wrt a csv file of IDS. BaSh.
+- Slicer deparser of measurements. Matlab.
+- Measuring protocol for version 4.10 with posthoc appended comments about 4.11.
 
 ## OS
 - Linux
