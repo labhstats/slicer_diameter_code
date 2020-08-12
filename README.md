@@ -3,8 +3,8 @@
 Code used to simplify (initialization and end collection into a single table) manual Slicer estimation of artery diameters.
 
 ## Intended included files:
-- Slicer start and load code of volumes wrt a csv file of IDS. BaSh.
-- Slicer deparser of measurements. Matlab.
+- Slicer start and subsequent load code of volumes with respect to a csv file of IDs. In BaSh.
+- Slicer deparser of measurements. In Matlab.
 - Measuring protocol for version 4.10 with posthoc appended comments about 4.11.
 
 ## OS
@@ -21,6 +21,6 @@ DL: https://download.slicer.org/
 - SegmentEditorExtraEffects
 - SlicerVMTK
 
-These packages were installed to try the procude described: https://www.youtube.com/watch?v=yi07mjr3JeU but was too sophisticated for our use; Basilar artery diameter measurements. However, the line tools included in this version was better than the native ones.
+These packages were installed to try the procedure described: https://www.youtube.com/watch?v=yi07mjr3JeU but was too sophisticated for our use; Basilar artery diameter measurements. However, the line tools included in this version was better than the native ones.
 
 
