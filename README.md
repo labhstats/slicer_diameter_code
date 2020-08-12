@@ -12,7 +12,9 @@ Code used to simplify (initialization and end collection into a single table) ma
 
 ## Slicer version
 - 3D Slicer 4.11.0 Compiled 10.08.2020 (dd/mm/yyyy).
- 
+
+DL: https://download.slicer.org/
+
 ## Slicer extensions (Not all required)
 - MarkupsToModel
 - Sandbox
