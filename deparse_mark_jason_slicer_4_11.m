@@ -1,4 +1,7 @@
 function output_main_cells = deparse_mark_jason_slicer_4_11(working_BIDS_dir)
+    %Deparses Slicer produced mrk.json files to collect diameter
+    %measurements.
+    %
     %Code works, but is nothing too sophisticated.
     %Alternative implementation can look in mrml files for diamters saved in Slicer.
     %%
@@ -33,7 +36,7 @@ function output_main_cells = deparse_mark_jason_slicer_4_11(working_BIDS_dir)
     
     %%
     % Storage cell
-    n_storages = 5; %Change this depending on how many measurements there actually are in the data.
+    n_storages = 3; %Change this depending on how many measurements there actually are in the data.
     output_main_cells = cell(0,n_storages + 1);
     
     for i = 1:n_folders
@@ -62,6 +65,8 @@ function output_main_cells = deparse_mark_jason_slicer_4_11(working_BIDS_dir)
         
         new_store_measurments_i = cell(1,n_storages);
         
+        z_coords = cell(1,n_mrk_json);
+        
         for j = 1:n_mrk_json
             %%
             %Fullfiling the mrk.json files, so that it can be read.
@@ -88,6 +93,10 @@ function output_main_cells = deparse_mark_jason_slicer_4_11(working_BIDS_dir)
             point_1 = mrk_json_decoded.markups.controlPoints(1).position;
             point_2 = mrk_json_decoded.markups.controlPoints(2).position;
             
+            z_coords{1,j} = (point_1(3) + point_2(3))/2; 
+            %Assumes that the line is measured in axial plane or at least with 
+            %similar Z coordinates for each line for when the basilar is curving.
+            
             disp(point_1);
             disp(point_2);
             
@@ -102,7 +111,16 @@ function output_main_cells = deparse_mark_jason_slicer_4_11(working_BIDS_dir)
             disp('-------Next mrk.json iter or end---------')
         end
         
-        merge_cell_id_mms = horzcat(current_ID_string,new_store_measurments_i);
+        disp(z_coords);
+        
+        [~,idx_order] = sort(cell2mat(z_coords),'ascend'); 
+        %Orientation: Lower order = Inferior, Higher order = Superior.
+        
+        idx_order = int2str(idx_order);
+        idx_order_cell = cell(1,1);
+        idx_order_cell{1,1} = idx_order;
+        
+        merge_cell_id_mms = horzcat(current_ID_string,new_store_measurments_i,idx_order_cell);
         disp(merge_cell_id_mms);
         
         output_main_cells = vertcat(output_main_cells,merge_cell_id_mms); %#ok<AGROW>
